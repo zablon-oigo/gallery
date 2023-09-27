@@ -1,0 +1,43 @@
+{% extends 'gallery/base.html' %}
+
+{% block title%}
+Home
+{% endblock %}
+{% block content %}
+<div class="max-w-4xl mx-auto flex justify-start items-center m-2 flex-col w-full ">
+    <h2 class="text-3xl text-center font-semibold">Latest Photo</h2>
+      <div class="max-w-4xl mx-auto grid grid-rows-1 px-6 py-12 sm:grid-cols-3 gap-3">
+        
+        {% for photo in photos %}
+        <div class="max-w-xs shadow-2xl">
+            <div class="w-full">
+                <a href="{{photo.get_absolute_url}}" class="">
+                    {% if photo.image  %}
+                    <img src="{{photo.image.url}}" class="rounded-t-lg w-full h-64 object-cover object-center" alt="{{ photo.name }}">
+                    {% endif %}
+                    <div class="px-6 py-6  bg-white rounded-b-xl ">
+                      <a href="{{photo.get_absolute_url}}" class=" px-4 py-2 bg-teal-500 flex justify-center items-center font-semibold text-white rounded-lg hover:bg-teal-700">View Photo</a>
+                    </div>
+                  </a>
+            </div>
+          
+        </div>
+            {% endfor %}
+          </div>
+          </div>
+
+          <div class="max-w-4xl mx-auto my-6 p-12 bg-gray-100 rounded-xl">
+            <h2 class=" text-3xl font-semibold text-center">Categories</h2>
+            <div class="mt-2 grid grid-rows-1  sm:grid-cols-3 gap-3">
+              {% for category in categories %}
+               <a href="" class="">
+                <div class="p-6 bg-white rounded-b-xl">
+                  <h4 class="text-lg font-semibold text-center">{{category.name}}</h4>
+                  <p class="text-lg text-gray-500 text-center">{{category.photos.count}} photo</p>
+                 </div>
+               </a>
+             
+               {% endfor %}
+            </div>
+          </div>
+{% endblock %}

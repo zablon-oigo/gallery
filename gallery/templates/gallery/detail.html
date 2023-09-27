@@ -1,0 +1,43 @@
+{% extends 'gallery/base.html' %}
+{% block title%}
+{{photo.name}}
+{% endblock %}
+{% block content %}
+<div class="max-w-4xl mx-auto  bg-gray-100">
+    <div class="flex justify-center py-6 px-6 flex-col sm:flex-row items-center">
+        <img src="{{photo.image.url }}" class="w-full sm:w-1/2 rounded-lg" alt="{{photo.name}}">
+        <div class=" block  my-6 mx-6">
+            <p class="text-3xl font-semibold">{{photo.category}}</p>
+            <p class="text-2xl">{{photo.name}}</p>
+            <p class="text-xl text-gray-500 ">{{photo.description}}</p>
+            <div class="w-full my-4">
+              <a href="{% url 'update' photo.id %}" class="px-4 py-2 bg-blue-500 rounded-lg text-white">update</a>
+              <a href="{% url 'delete' photo.id %}" class="px-4 py-2 bg-red-500 rounded-lg text-white">delete</a>
+    
+            </div>
+          </div>
+        
+    </div>
+    <h2 class=" text-3xl font-semibold text-center">Similar Photo</h2>
+    <div class="flex justify-start  items-center m-2 flex-col w-full">        
+    <div class="mt-2 grid grid-rows-1  sm:grid-cols-3 gap-3">
+              {% for photo in related_photo %}
+              <div class="max-w-xs">
+
+                  <a href="{{photo.get_absolute_url }}" class="">
+                    <img src="{{photo.image.url }}" alt="{{photo.name}}" class="h-64 w-full object-cover object-center">
+                    <div class="p-6 bg-white rounded-b-xl">
+                      <h4 class="text-lg font-semibold text-center">{{photo.name}}</h4>
+
+                     </div>
+                   </a>
+                </div>
+             
+               
+             
+               {% endfor %}
+              </div>
+            </div>
+</div>
+
+{% endblock %}

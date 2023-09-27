@@ -1,0 +1,18 @@
+{% extends 'gallery/base.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+<div class="max-w xs mx-auto my-20 p-6 rounded-lg shadow-2xl">
+    <form action="." method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <label for="" class="text-xl">{{field.label_tag}}</label>
+        {{field}}
+        {% endfor %}
+        <input type="submit" value="Log in" class="w-full text-white font-semibold bg-blue-500 hover:bg-blue-700 px-6 py-4 rounded-lg">
+    </form>
+</div>
+{% endblock %}

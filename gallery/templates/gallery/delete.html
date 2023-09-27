@@ -1,0 +1,20 @@
+{% extends 'gallery/base.html' %}
+
+{% block title %}
+{{photo.name}}
+{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto p-8 bg-gray-100 my-20">
+    <form action="." method="post">
+        {% csrf_token %}
+        <p class="text-lg">Are you sure you want to delete <span class="font-semibold text-3xl">"{{photo.name}}"</span></p>
+        <img src="{{photo.image.url}}" alt="" class="w-full h-80 object-center object-cover rounded-lg">
+        <div class="flex  justify-start items-start my-6">
+            <input type="submit" value="Delete" class="bg-red-500 m-4 text-white hover:bg-red-700 px-6 py-3 rounded-lg">
+        <a href="{{photo.get_absolute_url }}" class="border border-gray-800 rounded-lg px-6 py-3 m-4 text-gray-800 hover:text-gray-400">Cancel</a>
+        </div>
+    </form>
+
+</div>
+{% endblock %}
